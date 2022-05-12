@@ -16,6 +16,7 @@ int choose();
 void print_full_matrix(int Mat[LENGTH][LENGTH], int tl);
 int check_matrix(int Mat[LENGTH][LENGTH], int tl);
 void create_matrix(int Mat[LENGTH][LENGTH],int tl);
+void create_rows(int Mat[TAILLE][TAILLE], int i, int tl);
 /* Cette fonction affiche la Matrice entrée en paramètre*/
 void Masque_matrix(int Masque[LENGTH][LENGTH], int tl);
 void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl);

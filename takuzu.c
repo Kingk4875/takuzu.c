@@ -59,6 +59,7 @@ int check_matrix(int Mat[LENGTH][LENGTH], int tl){
     }
 }
 void create_matrix(int Mat[LENGTH][LENGTH], int tl){
+/* This function call other functions as verify_columns, create_rows or check_matrix to create and make sure that the matrix is correct*/
     for (int i=0; i<tl; i++){
         create_rows(Mat, i, tl);
     }
@@ -72,6 +73,7 @@ void create_matrix(int Mat[LENGTH][LENGTH], int tl){
 }
 
 void verify_columns (int Mat[LENGTH][LENGTH], int x, int tl){
+/* This function verify that colums are good in the matrix*/
     int sum=0, j=0;
     for (j=0; j<tl;j++) {
         const int MIN = 0, MAX = 1;
@@ -86,6 +88,7 @@ void verify_columns (int Mat[LENGTH][LENGTH], int x, int tl){
 }
 
 void create_rows(int Mat[LENGTH][LENGTH], int i, int tl){
+/* This function creates each row by each row to verify them one by one*/
     int sum=0;
     for (int j=0; j<tl;j++){
         const int MIN = 0, MAX = 1;
@@ -99,7 +102,7 @@ void create_rows(int Mat[LENGTH][LENGTH], int i, int tl){
 }
 
 void print_full_matrix(int Mat[LENGTH][LENGTH], int tl)
-/* Cette fonction affiche la Matrice entrée en paramètre*/
+/* This function prints the matrix*/
 {
     for (int ligne = 0; ligne<tl;ligne++)
     {
@@ -113,7 +116,7 @@ void print_full_matrix(int Mat[LENGTH][LENGTH], int tl)
 
 
 void Masque_matrix(int masque[LENGTH][LENGTH], int tl)
-/* Cette fonction modifie un tableau masque pour en faire un masque ne taille LENGTH*/
+/* This function creates a real masque onto the matrix*/
 {
     for (int ligne =0; ligne<tl ; ligne++)
         for (int col=0; col<tl ; col++)
@@ -121,7 +124,7 @@ void Masque_matrix(int masque[LENGTH][LENGTH], int tl)
 }
 
 void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl)
-/* Cette fonction affiche la Matrice entrée en paramètre avec son masque*/
+/* This function prints the matrix with the mask on*/
 {   printf("            ");
     for (int lettre =0; lettre<tl ; lettre++)
         printf("%c ",'A'+lettre);

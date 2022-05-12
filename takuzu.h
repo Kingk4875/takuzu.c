@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define LENGTH 8
+#define LENGTH 8 //Maximum length, our real length choosen being tl
 
 
 int choose();
@@ -18,7 +18,6 @@ int check_matrix(int Mat[LENGTH][LENGTH], int tl);
 void create_matrix(int Mat[LENGTH][LENGTH],int tl);
 void create_rows(int Mat[LENGTH][LENGTH], int i, int tl);
 void verify_columns (int Mat[LENGTH][LENGTH], int x, int tl);
-/* Cette fonction affiche la Matrice entrée en paramètre*/
 void Masque_matrix(int Masque[LENGTH][LENGTH], int tl);
 void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl);
 

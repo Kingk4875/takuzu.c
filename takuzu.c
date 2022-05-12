@@ -3,7 +3,7 @@
 //
 
 #include "takuzu.h"
-
+#include<math.h>
 
 
 int choose()
@@ -26,17 +26,32 @@ int check_matrix(int Mat[LENGTH][LENGTH], int tl){
         for (int j=0; j<tl;j++){
             sum += Mat[i][j];
         }
-        printf("The sum is %d\n", sum);
         if (sum == (tl/2)){
             valid_rows +=1;
         }
     }
-    printf("Number of valid rows is: %d\n", valid_rows);
     if (valid_rows == tl){
         valid +=1;
     }
-    printf("Valid? %d\n", valid);
-    if (valid ==1){
+    //check if every row is different
+    double nbs_row[4]={0,0,0,0,};
+    for (int i=0; i<tl;i++){
+        double nb=0;
+        for (int j=0; j<tl;j++){
+            nb += Mat[i][j]*pow(2,j);
+        }
+        nbs_row[i]=nb;
+        for (int k=0; k<i;k++) {
+            if (nbs_row[k] == nb) {
+                valid -= 1;
+            }
+        }
+    }
+    for (int h=0;h<tl;h++){
+    }
+    valid +=1;
+    //verifying everything is good
+    if (valid ==2){
         return 1;
     }
     else{

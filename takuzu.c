@@ -43,13 +43,13 @@ int check_matrix(int Mat[LENGTH][LENGTH], int tl){
         return 0;
     }
 }
-void create_matrix(int Mat[TAILLE][TAILLE], int tl){
+void create_matrix(int Mat[LENGTH][LENGTH], int tl){
     for (int i=0; i<tl; i++){
-        create_rows(Mat[TAILLE][TAILLE], i, tl);
+        create_rows(Mat, i, tl);
     }
 }
 
-void create_rows(int Mat[TAILLE][TAILLE], int i, int tl){
+void create_rows(int Mat[LENGTH][LENGTH], int i, int tl){
     int sum=0;
     for (int j=0; j<tl;j++){
         const int MIN = 0, MAX = 1;
@@ -58,7 +58,7 @@ void create_rows(int Mat[TAILLE][TAILLE], int i, int tl){
         sum += Mat[i][j];
     }
     if (sum != (tl/2)){
-        create_rows(Mat[TAILLE][TAILLE], i, tl);
+        create_rows(Mat, i, tl);
     }
 }
 

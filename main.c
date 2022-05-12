@@ -15,7 +15,7 @@ int main() {
             create_matrix(Mat, tl);
         }
     }*/
-    int* Masque[LENGTH][LENGTH];
+    int Masque[LENGTH][LENGTH];
     print_full_matrix(Mat,tl);
     printf("\nFiltre\n");
     Masque_matrix(Masque, tl);

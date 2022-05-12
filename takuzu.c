@@ -57,7 +57,7 @@ void create_rows(int Mat[LENGTH][LENGTH], int i, int tl){
         Mat[i][j] = number;
         sum += Mat[i][j];
     }
-    if (sum != (tl/2)){
+    if (sum != (tl/2)) {
         create_rows(Mat, i, tl);
     }
 }

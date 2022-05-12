@@ -4,9 +4,8 @@
 int main() {
     int tl = choose();
     srand(time(NULL));
-
     int Mat[LENGTH][LENGTH];
-    create_matrix(Mat, LENGTH);
+    create_matrix(Mat, tl);
     int a = 0;
     /*while (a ==0){
         a=check_matrix(Mat, tl);

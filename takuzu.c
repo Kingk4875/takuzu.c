@@ -45,11 +45,20 @@ int check_matrix(int Mat[LENGTH][LENGTH], int tl){
 }
 void create_matrix(int Mat[LENGTH][LENGTH], int tl){
     for (int i=0; i<tl; i++){
-        for (int j =0; j<tl;j++) {
-            const int MIN = 0, MAX = 1;
-            int number = (rand() % (MAX + 1 - MIN)) + MIN; // MIN <= number <= MAX
-            Mat[i][j] = number;
-        }
+        create_rows(Mat, i, tl);
+    }
+}
+
+void create_rows(int Mat[LENGTH][LENGTH], int i, int tl){
+    int sum=0;
+    for (int j=0; j<tl;j++){
+        const int MIN = 0, MAX = 1;
+        int number = (rand() % (MAX + 1 - MIN)) + MIN; // MIN <= number <= MAX
+        Mat[i][j] = number;
+        sum += Mat[i][j];
+    }
+    if (sum != (tl/2)){
+        create_rows(Mat, i, tl);
     }
 }
 

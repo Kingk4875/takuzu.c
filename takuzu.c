@@ -18,6 +18,15 @@ int choose()
     return choice;
 }
 
+COORDINATES enter_coordinates(int tl){
+    COORDINATES co;
+    printf("Pleaser enter two values x and y separated by space : \n");
+    scanf(" %c",&co.x);
+    scanf(" %d",&co.y);
+    printf("You chose point (%c,%d)\n",co.x,co.y);
+    return co;
+}
+
 int check_matrix(int Mat[LENGTH][LENGTH], int tl){
     int valid =0, valid_rows=0;
     //check if there is same number of 0 and 1 in rows
@@ -125,7 +134,7 @@ void Masque_matrix(int masque[LENGTH][LENGTH], int tl)
 
 void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl)
 /* This function prints the matrix with the mask on*/
-{   printf("            ");
+{   printf("             ");
     for (int lettre =0; lettre<tl ; lettre++)
         printf("%c ",'A'+lettre);
     printf("\n");
@@ -137,7 +146,7 @@ void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl
     for (int ligne =0; ligne<tl ; ligne++)
     {
         printf("         ");
-        printf("%c | ",'A'+ligne);
+        printf("%c | ",'1'+ligne);
         for (int col=0; col<tl ; col++)
         {
             if (masque[ligne][col]==1)

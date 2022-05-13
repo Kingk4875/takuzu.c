@@ -12,7 +12,7 @@ int choose()
     int choice = -1;
     while ((choice != 4) && (choice != 8))
     {
-        printf("Choose between 4 and 8: ");
+        printf("Choose between 4 and 8:");
         scanf( "%d", &choice);
     }
     return choice;
@@ -101,7 +101,7 @@ void create_rows(int Mat[LENGTH][LENGTH], int i, int tl){
     }
 }
 
-void print_full_matrix(int Mat[LENGTH][LENGTH], int tl)
+void print_matrix(int Mat[LENGTH][LENGTH], int tl)
 /* This function prints the matrix*/
 {
     for (int ligne = 0; ligne<tl;ligne++)
@@ -136,7 +136,8 @@ void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl
 
     for (int ligne =0; ligne<tl ; ligne++)
     {
-        printf("%d COLONNE | ",ligne+1);
+        printf("         ");
+        printf("%c | ",'A'+ligne);
         for (int col=0; col<tl ; col++)
         {
             if (masque[ligne][col]==1)
@@ -148,3 +149,10 @@ void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl
     }
 }
 
+int ask_menu(){
+/* This function have to let choose the user between the option of the menu */
+    int choice = -1;
+    printf("Choose what do you want to do:");
+    scanf( "%d", &choice);
+    return choice;
+}

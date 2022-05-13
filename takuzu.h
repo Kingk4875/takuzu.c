@@ -13,10 +13,12 @@
 typedef struct {
     int x;
     int y;
+    int value;
 }COORDINATES;
 
 int choose();
 COORDINATES enter_coordinates(int tl);
+int move_is_correct(int Mat[LENGTH][LENGTH], int MASQUE[LENGTH][LENGTH], int tl);
 void print_matrix(int Mat[LENGTH][LENGTH], int tl);
 int check_matrix(int Mat[LENGTH][LENGTH], int tl);
 void create_matrix(int Mat[LENGTH][LENGTH],int tl);

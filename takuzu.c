@@ -25,13 +25,67 @@ COORDINATES enter_coordinates(int tl){
     scanf(" %d",&co.y);
     while (((co.x>'A'+tl-1) || (co.x<'A')) || ((co.y>tl)||(co.y<1)))
     {
-        printf("Pleaser enter a letter for  x and an int for y separated by space : \n");
+        printf("Pleaser enter a letter IN UPPERCASE for x and an int for y separated by space : \n");
         scanf(" %c",&co.x);
         scanf(" %d",&co.y);
     }
     printf("You chose point (%c,%d)\n",co.x,co.y);
-
+    printf("Now enter 1 or 0 : \n");
+    scanf(" %d",&co.y);
+    while((co.value !=0) && ( co.value != 1))
+    {
+        scanf(" %d",&co.value);
+    }
     return co;
+}
+int move_is_correct(int Mat[LENGTH][LENGTH], int MASQUE[LENGTH][LENGTH], int tl)
+{
+        COORDINATES  values = enter_coordinates(tl);
+        int x = 0;
+        int y = values.y-1;
+        while (values.x != 'A'+x)
+            x++;
+        printf("The real coords are (%d,%d)\n", x,y);
+        if (MASQUE[x][y]==1)
+        //Case if the value is already wrote
+        {
+            printf("There is already filled coordinates, please choose another one");
+            move_is_correct(Mat,MASQUE,tl);
+            //ON DOIT MODIFIER LE MASQUE CHAQUE FOIS QU'UNE VALEURE EST BONNE
+        }
+        else
+        //Case if the value can be coorect ?
+        {
+            if (Mat[x][y] == values.value)
+            {
+                printf("Nice move baby");
+                MASQUE[x][y]=1;
+                //modif_mask_function
+            }
+            else
+            {
+                int countX = 0, countY = 0;
+                for(int X=0; X<tl ; X++)
+                {
+                    if (MASQUE[X][y] == 1)
+                    {
+                        countX+=Mat[X][y];
+                    }
+                }
+
+                for(int Y=0; Y<tl ; Y++)
+                {
+                    if (MASQUE[x][Y] == 1)
+                    {
+                        countY+=Mat[x][Y];
+                    }
+                }
+                if ((countX == countY);
+                printf("Wrong")
+            }
+        }
+        return 1;
+
 }
 
 int check_matrix(int Mat[LENGTH][LENGTH], int tl){

@@ -9,6 +9,9 @@ void play(){
     int Masque[LENGTH][LENGTH];
     Masque_matrix(Masque, tl);
     print_with_mask(Mat,Masque,tl);
+    COORDINATES x;
+    x = enter_coordinates(tl);
+    printf("%c is the x and %d is the y", x.x , x.y);
 }
 void rules(){
     printf("\n===These are the rules:===\n");

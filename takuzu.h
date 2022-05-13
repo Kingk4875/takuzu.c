@@ -10,9 +10,13 @@
 #include <stdlib.h>
 
 #define LENGTH 8 //Maximum length, our real length choosen being tl
-
+typedef struct {
+    int x;
+    int y;
+}COORDINATES;
 
 int choose();
+COORDINATES enter_coordinates(int tl);
 void print_matrix(int Mat[LENGTH][LENGTH], int tl);
 int check_matrix(int Mat[LENGTH][LENGTH], int tl);
 void create_matrix(int Mat[LENGTH][LENGTH],int tl);

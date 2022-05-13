@@ -20,10 +20,17 @@ int choose()
 
 COORDINATES enter_coordinates(int tl){
     COORDINATES co;
-    printf("Pleaser enter two values x and y separated by space : \n");
+    printf("Pleaser enter a letter IN UPPERCASE for x and an int for y separated by space : \n");
     scanf(" %c",&co.x);
     scanf(" %d",&co.y);
+    while (((co.x>'A'+tl) || (co.x<'A')) || ((co.y>tl)||(co.y<1)))
+    {
+        printf("Pleaser enter a letter for  x and an int for y separated by space : \n");
+        scanf(" %c",&co.x);
+        scanf(" %d",&co.y);
+    }
     printf("You chose point (%c,%d)\n",co.x,co.y);
+
     return co;
 }
 

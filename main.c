@@ -2,7 +2,7 @@
 #include "takuzu.h"
 
 void play(){
-    int tl = choose();
+    int tl = choose(),life = 3;
     srand(time(NULL));
     int Mat[LENGTH][LENGTH];
     create_matrix(Mat, tl);
@@ -11,7 +11,9 @@ void play(){
     print_with_mask(Mat,Masque,tl);
     COORDINATES x;
     x = enter_coordinates(tl);
-    printf("%c is the x and %d is the y", x.x , x.y);
+    printf("%c is the x and %d is the y\n", x.x , x.y);
+    move_is_correct(Mat,Masque,tl);
+
 }
 void rules(){
     printf("\n===These are the rules:===\n");

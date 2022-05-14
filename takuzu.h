@@ -27,5 +27,6 @@ void verify_columns (int Mat[LENGTH][LENGTH], int x, int tl);
 void Masque_matrix(int Masque[LENGTH][LENGTH], int tl);
 void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl);
 int ask_menu();
+int end(int Masque[LENGTH][LENGTH], int heart, int tl);
 
 #endif //TAKUZU_TAKUZU_H

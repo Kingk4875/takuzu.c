@@ -20,20 +20,21 @@ int choose()
 
 COORDINATES enter_coordinates(int tl){
     COORDINATES co;
-    printf("Pleaser enter a letter IN UPPERCASE for x and an int for y separated by space : \n");
+    printf("\nPleaser enter a letter IN UPPERCASE for the column and an INTEGER for the line separated by space : \n");
     scanf(" %c",&co.x);
     scanf(" %d",&co.y);
     while (((co.x>'A'+tl-1) || (co.x<'A')) || ((co.y>tl)||(co.y<1)))
     {
-        printf("Pleaser enter a letter IN UPPERCASE for x and an int for y separated by space : \n");
+        printf("\nPleaser enter a letter IN UPPERCASE for the column and an INTEGER for the line separated by space : \n");
         scanf(" %c",&co.x);
         scanf(" %d",&co.y);
     }
     printf("You chose point (%c,%d)\n",co.x,co.y);
     printf("Now enter 1 or 0 : \n");
-    scanf(" %d",&co.y);
+    scanf(" %d",&co.value);
     while((co.value !=0) && ( co.value != 1))
     {
+        printf("Now enter 1 or 0 : \n");
         scanf(" %d",&co.value);
     }
     return co;
@@ -41,29 +42,29 @@ COORDINATES enter_coordinates(int tl){
 int move_is_correct(int Mat[LENGTH][LENGTH], int MASQUE[LENGTH][LENGTH], int tl)
 {
         COORDINATES  values = enter_coordinates(tl);
-        int x = 0;
-        int y = values.y-1;
-        while (values.x != 'A'+x)
-            x++;
-        printf("The real coords are (%d,%d)\n", x,y);
+        int y = 0;
+        int x = values.y-1;
+        while (values.x != 'A'+y)
+            y++;
         if (MASQUE[x][y]==1)
         //Case if the value is already wrote
         {
-            printf("There is already filled coordinates, please choose another one");
+            printf("This is already filled coordinates, please choose something else.\n");
             move_is_correct(Mat,MASQUE,tl);
-            //ON DOIT MODIFIER LE MASQUE CHAQUE FOIS QU'UNE VALEURE EST BONNE
         }
         else
-        //Case if the value can be coorect ?
+        //Case if the value can be correct ?
         {
             if (Mat[x][y] == values.value)
             {
-                printf("Nice move baby");
+                printf("Nice move!\n");
                 MASQUE[x][y]=1;
                 //modif_mask_function
+                return 0;
             }
             else
             {
+                // verify if the move is not wrong
                 int countX = 0, countY = 0;
                 for(int X=0; X<tl ; X++)
                 {
@@ -80,8 +81,36 @@ int move_is_correct(int Mat[LENGTH][LENGTH], int MASQUE[LENGTH][LENGTH], int tl)
                         countY+=Mat[x][Y];
                     }
                 }
-                if ((countX == countY);
-                printf("Wrong")
+                if (values.value ==1) {
+                    if (countX == tl / 2 || countY == tl / 2) {
+                        printf("Wrong case, please follow the rules.\n You lost one heart.\n");
+                        return 1;
+                    }
+                }
+                countX = 0, countY = 0;
+                for(int X=0; X<tl ; X++)
+                {
+                    if (MASQUE[X][y] == 0)
+                    {
+                        countX+=Mat[X][y];
+                    }
+                }
+
+                for(int Y=0; Y<tl ; Y++)
+                {
+                    if (MASQUE[x][Y] == 0)
+                    {
+                        countY+=Mat[x][Y];
+                    }
+                }
+                if (values.value ==0) {
+                    if (countX == tl / 2 || countY == tl / 2) {
+                        printf("Wrong case, please follow the rules.\n You lost one heart.\n");
+                        return 1;
+                    }
+                }
+                printf("Nope, correct but incorrect case ;)\n");
+                return 0;
             }
         }
         return 1;
@@ -195,7 +224,7 @@ void Masque_matrix(int masque[LENGTH][LENGTH], int tl)
 
 void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl)
 /* This function prints the matrix with the mask on*/
-{   printf("             ");
+{   printf("\n             ");
     for (int lettre =0; lettre<tl ; lettre++)
         printf("%c ",'A'+lettre);
     printf("\n");
@@ -225,4 +254,23 @@ int ask_menu(){
     printf("Choose what do you want to do:");
     scanf( "%d", &choice);
     return choice;
+}
+
+int end(int Masque[LENGTH][LENGTH], int heart, int tl){
+    /* It ends the game if there is no life anymore or if the grid is complete*/
+    if (heart == 0) {
+        printf("===GAME OVER===");
+        return 1;
+    }
+    int sum=0;
+    for (int i=0; i<tl;i++) {
+        for (int j = 0; j < tl; j++) {
+            sum += Masque[i][j];
+        }
+    }
+    if (sum == tl*tl){
+        printf("=== VICTORY!! WELL DONE <3===\n");
+        return 1;
+    }
+    return 0;
 }

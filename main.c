@@ -2,18 +2,22 @@
 #include "takuzu.h"
 
 void play(){
-    int tl = choose(),life = 3;
+    int tl = choose(),life = 3, finished = 0;
     srand(time(NULL));
     int Mat[LENGTH][LENGTH];
     create_matrix(Mat, tl);
     int Masque[LENGTH][LENGTH];
     Masque_matrix(Masque, tl);
-    print_with_mask(Mat,Masque,tl);
     COORDINATES x;
-    x = enter_coordinates(tl);
-    printf("%c is the x and %d is the y\n", x.x , x.y);
-    move_is_correct(Mat,Masque,tl);
-
+    //
+    while (finished !=1) {
+        print_with_mask(Mat, Masque, tl);
+        life -= move_is_correct(Mat, Masque, tl);
+        finished = end(Masque, life, tl);
+        if (life > 0 && finished != 1) {
+            printf("You have still %d hearts\n ...\n", life);
+        }
+    }
 }
 void rules(){
     printf("\n===These are the rules:===\n");

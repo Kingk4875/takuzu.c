@@ -2,6 +2,7 @@
 #include "takuzu.h"
 
 void play(){
+    // When the user wants to play by himself
     int tl = choose(),life = 3, finished = 0;
     srand(time(NULL));
     int Mat[LENGTH][LENGTH];
@@ -20,6 +21,7 @@ void play(){
     }
 }
 void rules(){
+    // Rules of the game to be displayed
     printf("\n===These are the rules:===\n");
     printf("1) There must be the same number of ZERO and ONE in a line or a column\n");
     printf("2) Do not put 3 ONE or ZERO next to each other in a row or column\n");
@@ -27,6 +29,7 @@ void rules(){
 }
 
 int main() {
+    //Our menu
     printf("\n      === TAKUZU MENU ===\n");
     printf("1) Play the game\n");
     printf("2) See rules\n");

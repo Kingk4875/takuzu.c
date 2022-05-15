@@ -30,6 +30,7 @@ int main() {
     printf("\n      === TAKUZU MENU ===\n");
     printf("1) Play the game\n");
     printf("2) See rules\n");
+    printf("3) Solve Matrix System \n");
     int response = ask_menu();
     switch (response){
         case 1:
@@ -43,6 +44,9 @@ int main() {
             if (back==0) {
                 main();
             }
+            break;
+        case 3:
+            solve_matrix();
             break;
         default:
             printf("~Wrong response.~\n");

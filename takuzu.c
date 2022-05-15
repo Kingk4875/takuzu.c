@@ -19,6 +19,7 @@ int choose()
 }
 
 COORDINATES enter_coordinates(int tl){
+    /*Enter coordinates of the case*/
     COORDINATES co;
     printf("\nPleaser enter a letter IN UPPERCASE for the column and an INTEGER for the line separated by space : \n");
     scanf(" %c",&co.x);
@@ -41,6 +42,7 @@ COORDINATES enter_coordinates(int tl){
 }
 int move_is_correct(int Mat[LENGTH][LENGTH], int Mask[LENGTH][LENGTH], int tl)
 {
+    /* Verify if the move is correct*/
         COORDINATES  values = enter_coordinates(tl);
         sleep(1);
         int y = 0;
@@ -365,6 +367,7 @@ int solve_matrix_system(int Mat[LENGTH][LENGTH], int Mask[LENGTH][LENGTH],int tl
             }
         }
     }
+    //if it can't find a logical move based on the matrix, it tries one without more searches
     if (success == 0){
         int end=0;
         for (int i=0; i<tl;i++){

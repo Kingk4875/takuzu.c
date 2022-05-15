@@ -149,11 +149,8 @@ int check_matrix(int Mat[LENGTH][LENGTH], int tl){
             }
         }
     }
-    for (int h=0;h<tl;h++){
-    }
-    valid +=1;
     //verifying everything is good
-    if (valid ==2){
+    if (valid ==1){
         return 1;
     }
     else{

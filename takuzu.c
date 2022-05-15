@@ -248,6 +248,98 @@ void print_with_mask(int Mat[LENGTH][LENGTH], int masque[LENGTH][LENGTH], int tl
     }
 }
 
+void solve_matrix()
+{
+    int tl = choose();
+    srand(time(NULL));
+    int Mat[LENGTH][LENGTH];
+    create_matrix(Mat, tl);
+    int Masque[LENGTH][LENGTH];
+    Masque_matrix(Masque, tl);
+    COORDINATES x;
+    int Unsolved = tl*tl;
+    int steps = 0;
+    printf("The system will try to solve this Matrix : \n");
+    print_with_mask(Mat,Masque,tl);
+
+    while (Unsolved > 0)
+    {
+        steps++;
+        solve_matrix_system(Mat, Masque, tl);
+        for (int x = 0; x < 4; x++)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                if (Masque[x][y]==1)
+                    Unsolved -=1;
+                printf("Unsolved = %d", Unsolved);
+            }
+        }
+    }
+    printf("\nThe Solved Matrix is :\n");
+    print_with_mask(Mat,Masque,tl);
+
+
+}
+
+
+void solve_matrix_system(int Mat[LENGTH][LENGTH], int MASQUE[LENGTH][LENGTH],int tl) {
+    //First we check if a row is full of 1 or full of 0
+    for (int x = 0; x < 4; x++) {
+        int sum_row_1 = 0;
+        int sum_row_0 = 0;
+        for (int y = 0; y < 4; y++) {
+            if ((MASQUE[x][y] == 1) && (Mat[x][y] == 1))
+                sum_row_1++;
+            if ((MASQUE[x][y] == 1) && (Mat[x][y] == 0))
+                sum_row_0++;
+        }
+        printf(" Ligne MAT %d = 1-%d 0-%d \n", x, sum_row_1, sum_row_0);
+        for (int yp = 0; yp < 4; yp++) {
+            if (sum_row_1 == (tl / 2)) {
+                if (MASQUE[x][yp] == 0) {
+                    Mat[x][yp] = 0;
+                    MASQUE[x][yp] = 1;
+                }
+            }
+            if (sum_row_0 == (tl / 2)) {
+                if (MASQUE[x][yp] == 0) {
+                    Mat[x][yp] = 1;
+                    MASQUE[x][yp] = 1;
+                }
+            }
+        }
+
+
+        for (int x = 0; x < 4; x++) {
+            int sum_row_1 = 0;
+            int sum_row_0 = 0;
+            for (int y = 0; y < 4; y++) {
+                if ((MASQUE[y][x] == 1) && (Mat[y][x] == 1))
+                    sum_row_1++;
+                if ((MASQUE[y][x] == 1) && (Mat[y][x] == 0))
+                    sum_row_0++;
+            }
+            printf(" Colonne MAT %d = 1-%d 0-%d \n", x, sum_row_1, sum_row_0);
+            for (int xp = 0; xp < 4; xp++) {
+                if (sum_row_1 == (tl / 2)) {
+                    if (MASQUE[xp][x] == 0) {
+                        Mat[xp][x] = 0;
+                        MASQUE[xp][x] = 1;
+                    }
+                }
+                if (sum_row_0 == (tl / 2)) {
+                    if (MASQUE[xp][x] == 0) {
+                        Mat[xp][x] = 1;
+                        MASQUE[xp][x] = 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 int ask_menu(){
 /* This function have to let choose the user between the option of the menu */
     int choice = -1;

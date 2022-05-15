@@ -6,16 +6,16 @@ void play(){
     srand(time(NULL));
     int Mat[LENGTH][LENGTH];
     create_matrix(Mat, tl);
-    int Masque[LENGTH][LENGTH];
-    Masque_matrix(Masque, tl);
+    int Mask[LENGTH][LENGTH];
+    Mask_matrix(Mask, tl);
     COORDINATES x;
     //
     while (finished !=1) {
-        print_with_mask(Mat, Masque, tl);
-        life -= move_is_correct(Mat, Masque, tl);
-        finished = end(Masque, life, tl);
+        print_with_mask(Mat, Mask, tl);
+        life -= move_is_correct(Mat, Mask, tl);
+        finished = end(Mask, life, tl);
         if (life > 0 && finished != 1) {
-            printf("You have still %d hearts\n ...\n", life);
+            printf("(You have still %d hearts)\n ...\n", life);
         }
     }
 }
@@ -31,22 +31,44 @@ int main() {
     printf("1) Play the game\n");
     printf("2) See rules\n");
     printf("3) Solve Matrix System \n");
+    printf("4) Quit the game\n");
     int response = ask_menu();
     switch (response){
         case 1:
             play();
+            int back=1;
+            printf("\nEnter 0 to return to the menu:");
+            scanf("%d", &back);
+            while (back != 0){
+                printf("\nEnter 0 to return to the menu:");
+                scanf("%d", &back);
+            }
+            main();
             break;
         case 2:
             rules();
-            int back;
-            printf("Enter 0 to return to the menu:");
+            back=1;
+            printf("\nEnter 0 to return to the menu:");
             scanf("%d", &back);
-            if (back==0) {
-                main();
+            while (back != 0){
+                printf("\nEnter 0 to return to the menu:");
+                scanf("%d", &back);
             }
+            main();
             break;
         case 3:
             solve_matrix();
+            back=1;
+            printf("\nEnter 0 to return to the menu:");
+            scanf("%d", &back);
+            while (back != 0){
+                printf("\nEnter 0 to return to the menu:");
+                scanf("%d", &back);
+            }
+            main();
+            break;
+        case 4:
+            printf("Goodbye!");
             break;
         default:
             printf("~Wrong response.~\n");
